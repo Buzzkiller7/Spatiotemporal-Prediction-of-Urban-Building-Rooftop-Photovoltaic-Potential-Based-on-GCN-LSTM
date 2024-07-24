@@ -1,5 +1,9 @@
 # Spatiotemporal Prediction of Urban Building Rooftop Photovoltaic Potential Based on GCN-LSTM: A Case Study of Glasgow
 
+**Chen Yang, Shengyuan Li, Zhonghua Gou\***
+_School of Urban Design, Wuhan University, Wuhan, China;_
+_\*correspondence: zh.gou@whu.edu.cn_
+
 ## Introduction
 
 This repository contains the implementation of the study "Spatiotemporal Prediction of Urban Building Rooftop Photovoltaic Potential Based on GCN-LSTM: A Case Study of Glasgow." The study aims to predict the photovoltaic (PV) potential of urban building rooftops considering spatial shading relationships using a Graph Convolutional Network - Long Short-Term Memory (GCN-LSTM) model.
