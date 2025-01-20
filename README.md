@@ -33,21 +33,74 @@ To address the building decarbonization crisis, the widespread adoption of rooft
    pip install -r requirements.txt
    ```
 
-## Usage
+### **Code Description and Usage**
 
-1. Prepare your dataset following the structure provided in the `data` folder.
-2. Run the preprocessing script:
-   ```sh
-   python preprocess.py
-   ```
-3. Train the model:
-   ```sh
-   python train.py
-   ```
-4. Evaluate the model:
-   ```sh
-   python evaluate.py
-   ```
+This repository provides several Python scripts that implement different components of the methodology. Below is the order of execution and a brief description of each script:
+
+#### **1. `TopSolarRadiation_DNI_SIS.py`**
+
+This script calculates the total solar radiation on sloped rooftops based on the Direct Normal Irradiance (DNI) and Surface Incoming Shortwave radiation (SIS) data. The calculated values are used as input for predicting rooftop PV potential.
+
+**Usage:**
+
+```
+python scripts/TopSolarRadiation_DNI_SIS.py
+```
+
+#### **2. `SlantedListOpt_4Seasons.py`**
+
+This script computes the shading relationships between buildings based on seasonal variations. It considers the effect of seasonal solar radiation on rooftop shading and calculates the shading effects for each building.
+
+**Usage:**
+
+```
+python scripts/SlantedListOpt_4Seasons.py
+```
+
+#### **3. `Subgraph_Segmentation_Final.py`**
+
+This script processes and segments the building graph into subgraphs. This segmentation is used to optimize the efficiency of the GCN-LSTM model during training.
+
+**Usage:**
+
+```
+python scripts/Subgraph_Segmentation_Final.py
+```
+
+#### **4. `GCN_LSTM_GPU_GridSearch_GlobalCluster_EdgeWeight.py`**
+
+This script performs global GCN-LSTM model training of building graphs based on spatial relationships.
+
+**Usage:**
+
+```
+python scripts/GCN_LSTM_GPU_GridSearch_GlobalCluster_EdgeWeight.py
+```
+
+#### **5. `GCN_LSTM_GPU_GridSearch_4SeasonTrain.py`**
+
+This script performs grid search for hyperparameter tuning of the GCN-LSTM model. It trains the model using data segmented by seasons (Spring, Summer, Autumn, and Winter) to find optimal parameters.
+
+**Usage:**
+
+```
+python scripts/GCN_LSTM_GPU_GridSearch_4SeasonTrain.py
+```
+
+------
+
+### **Model Training**
+
+- **Data Preprocessing:** Before running the scripts, ensure you have the dataset prepared as described in the methodology of your paper (building morphological characteristics and solar radiation data).
+- **Training:** The scripts sequentially process the data and perform grid search, clustering, and segmentation to train the GCN-LSTM model for each season's solar radiation prediction.
+
+### **Running the Full Pipeline:**
+
+1. **Step 1:** Run `TopSolarRadiation_DNI_SIS.py` to compute solar radiation data for rooftops.
+2. **Step 2:** Execute `SlantedListOpt_4Seasons.py` to calculate building shading relationships considering seasonal variations.
+3. **Step 3:** Use `Subgraph_Segmentation_Final.py` to finalize segmentation of building graphs.
+4. **Step 4:** Run `GCN_LSTM_GPU_GridSearch_GlobalCluster_EdgeWeight.py` to training the global model.
+5. **Step 5:** Finally, execute `GCN_LSTM_GPU_GridSearch_4SeasonTrain.py` for hyperparameter tuning and training the model across all four seasons.
 
 ## Repository Structure
 
